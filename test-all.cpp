@@ -41,6 +41,8 @@ int main(int argc, char* argv[]){
     assert(a.GetName() == "Annie");
     assert(a.GetID() == "98111");
 
+    // Write all the tests for the ClassRoster class
+
 
     cout << "ALL TEST PASSED.... YOU ARE AMAZING!!!" << endl;
     return 0;
