@@ -43,6 +43,9 @@ public:
     void Write(ostream& output)const;
     void Read(istream& output);
 
+    int GetNumberOfStudents()const;
+    int GetNumberOfSubjects()const;
+
 };
 
 

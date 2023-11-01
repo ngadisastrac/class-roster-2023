@@ -43,6 +43,29 @@ int main(int argc, char* argv[]){
 
     // Write all the tests for the ClassRoster class
 
+    ClassRoster roster;
+    assert(roster.GetNumberOfStudents() == 0);
+    assert(roster.GetNumberOfSubjects() == 0);
+    assert(roster.FindStudentPosition("0") == -1);
+    assert(roster.FindSubjectPosition("X") == -1);
+    assert(roster.GetStudent(0) == nullptr);
+    assert(roster.GetSubject(0) == "");
+    assert(roster.GetGrade(0,0) == -1);
+    assert(roster.SetGrade(0,0,0) == false);
+    assert(roster.GetCourseAverage() == 0);
+    assert(roster.GetSubjectAverage(0) == 0);
+    assert(roster.GetStudentAverage(0) == 0);
+    out.str("");
+    roster.Write(out);
+    assert(out.str() == "");
+
+
+    assert(roster.AddSubject("Math"));
+    assert(!roster.AddSubject("Math"));
+
+
+
+
 
     cout << "ALL TEST PASSED.... YOU ARE AMAZING!!!" << endl;
     return 0;
