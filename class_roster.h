@@ -33,6 +33,7 @@ public:
     double GetGrade(int studentPosition, int subjectPosition)const;
     bool SetGrade(int studentPosition, int subjectPosition, double grade);
 
+    bool AddStudentSubject(const Student& newStudent, const string& newSubject);
     bool AddSubject(const string& newSubject);
     bool AddStudent(const Student& newStudent);
 

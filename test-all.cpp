@@ -60,11 +60,45 @@ int main(int argc, char* argv[]){
     assert(out.str() == "");
 
 
-    assert(roster.AddSubject("Math"));
     assert(!roster.AddSubject("Math"));
+    assert(!roster.AddStudent(Student("Jeff", "0")));
 
+    assert(roster.AddStudentSubject(Student("Jeff", "001"), "Math"));
+    // Should we allow the user to call this method again ??
+    assert(roster.GetNumberOfStudents() == 1);
+    assert(roster.GetNumberOfSubjects() == 1);
+    assert(roster.GetStudent(0)->Equals(Student("Jeff", "001")));
+    assert(roster.GetStudent(1) == nullptr);
+    assert(roster.GetSubject(0) == "Math");
+    assert(roster.GetSubject(1) == "");
+    assert(roster.GetGrade(0, 0) == 0);
+    assert(roster.FindSubjectPosition("001") == 0);
+    assert(roster.FindStudentPosition("000") == -1);
+    assert(roster.FindSubjectPosition("Math") == 0);
+    assert(roster.FindSubjectPosition("Science") == -1);
+    assert(roster.SetGrade(0, 0, 95));
+    assert(!roster.SetGrade(0, 1, 95));
+    assert(!roster.SetGrade(1, 0, 95));
 
+    assert(roster.AddStudent(Student("Jenny", "009")));
+    assert(roster.AddSubject("Science"));
+    assert(roster.AddSubject("History"));
 
+    assert(roster.SetGrade(0, 1, 70));
+    assert(roster.SetGrade(0, 2, 55));
+    assert(roster.SetGrade(1, 0, 60));
+    assert(roster.SetGrade(1, 1, 65));
+    assert(roster.SetGrade(1, 2, 99));
+
+    const double GRADES[2][3] = {{95, 70, 55},{60, 65, 99}};
+
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            assert(roster.GetGrade(i,j) == GRADES[i][j]);
+        }
+    }
+
+    // Still need to test ClassRoster::Read and ClassRoster::Write
 
 
     cout << "ALL TEST PASSED.... YOU ARE AMAZING!!!" << endl;
