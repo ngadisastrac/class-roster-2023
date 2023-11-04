@@ -66,18 +66,44 @@ double ClassRoster::GetGrade(int studentPosition, int subjectPosition) const {
 }
 
 bool ClassRoster::SetGrade(int studentPosition, int subjectPosition, double grade) {
-    return false;
+
+    if (studentPosition >= _numStudents || subjectPosition >= _numSubjects) {
+        return false;
+    } else {
+        _grades[studentPosition][subjectPosition] = grade;
+        return true;
+    }
+
+
 }
 
 bool ClassRoster::AddStudentSubject(const Student &newStudent, const string &newSubject) {
+
+    if (_numStudents > 0) {
+        return false;
+    }
+    _students = new Student*[1];
+    _subjects = new string[1];
+    _grades = new double* [1];
+    _grades[0] = new double;
+    _grades[0][0] = 0.0;
+    _students[0] = new Student(newStudent);
+    _subjects[0] = newSubject;
+    _numStudents = 1;
+    _numSubjects = 1;
+
     return false;
 }
 
 bool ClassRoster::AddSubject(const string &newSubject) {
     return false;
+
 }
 
 bool ClassRoster::AddStudent(const Student &newStudent) {
+    if ((_students[_numStudents] = new Student(newStudent))){
+        return true;
+    }
     return false;
 }
 
